@@ -3,7 +3,7 @@ import pandas as pd
 from itertools import product
 import pickle
 
-# st.set_page_config(layout="wide")
+st.set_page_config(layout="wide")
 st.title("Iterations")
 
 tab1, tab2 = st.tabs(["Research Lab", "Academic Lab"])
