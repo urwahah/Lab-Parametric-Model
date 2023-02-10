@@ -83,7 +83,7 @@ st.caption("**:orange[Pressure Drop Values]**")
 st.caption("Provide component pressure drops (in. w.g.) for each fan system as required, assuming an AHU design velocity of 500 FPM.")
 path = Path.cwd() / 'data' / 'Reference.xlsx'
 df_PD_default = pd.read_excel(path, engine="openpyxl", sheet_name='Pressure Drop', names = ['Component', 'Supply Fan', 'Lab Exhaust Fan', 'General Exhaust Fan'])
-PD_return = AgGrid(df_PD_default, key='grid1', theme="balham", editable=True, fit_columns_on_grid_load=True)
+PD_return = AgGrid(df_PD_default, key='grid1', theme="balham", editable=True, fit_columns_on_grid_load=False)
 # st.text("Grid Return")
 # st.write(PD_return['data'])
 
