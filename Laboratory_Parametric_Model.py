@@ -1,8 +1,6 @@
 import streamlit as st
 
-st.set_page_config(
-        page_title="Laboratory Parametric Model",
-)
+st.set_page_config(page_title="Laboratory Parametric Model")
 st.title("Laboratory Parametric Energy Model")
 
 st.markdown(
@@ -22,3 +20,5 @@ st.markdown(
 )
 st.subheader("")
 st.image("https://i.imgur.com/sPVBkh7.png", caption = "PowerBI Dashboard")
+st.subheader("")
+st.write("Source code available [here](https://github.com/urwahah/Lab-Parametric-Model).")
