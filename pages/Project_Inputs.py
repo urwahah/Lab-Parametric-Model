@@ -2,10 +2,9 @@ import streamlit as st
 import pandas as pd
 import io
 from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder
+from pathlib import Path
 
-st.set_page_config(
-        page_title="Project Inputs",
-)
+st.set_page_config(page_title="Project Inputs")
 st.title("Project Inputs")
 data = {}
 
@@ -82,8 +81,8 @@ with col2:
 
 st.caption("**:orange[Pressure Drop Values]**")
 st.caption("Provide component pressure drops (in. w.g.) for each fan system as required, assuming an AHU design velocity of 500 FPM.")
-path = 'C:\\Users\\uirfan\\OneDrive - SmithGroup Companies Inc\\Desktop\\14276 - UWM eng\\Reference.xlsx'
-df_PD_default = pd.read_excel(path, sheet_name='Pressure Drop', names = ['Component', 'Supply Fan', 'Lab Exhaust Fan', 'General Exhaust Fan'])
+path = Path.cwd() / 'data' / 'Reference.xlsx'
+df_PD_default = pd.read_excel(path, engine="openpyxl", sheet_name='Pressure Drop', names = ['Component', 'Supply Fan', 'Lab Exhaust Fan', 'General Exhaust Fan'])
 PD_return = AgGrid(df_PD_default, key='grid1', theme="balham", editable=True, fit_columns_on_grid_load=True)
 # st.text("Grid Return")
 # st.write(PD_return['data'])
