@@ -3,3 +3,4 @@ streamlit>=1.17.0
 streamlit-aggrid>=0.3.3
 pathlib>=1.0.1
 openpyxl>=3.0.10
+xlsxwriter>=3.0.8
