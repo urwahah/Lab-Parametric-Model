@@ -4,8 +4,7 @@ import io
 from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder
 from pathlib import Path
 
-st.set_page_config(page_title="Project Inputs")
-st.set_page_config(layout="wide")
+st.set_page_config(page_title="Project Inputs", layout="wide")
 st.title("Project Inputs")
 data = {}
 
