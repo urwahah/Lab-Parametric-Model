@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 import io
-from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder
+from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder, JsCode
 from pathlib import Path
 
-st.set_page_config(page_title="Project Inputs", layout="wide")
+st.set_page_config(page_title="Project Inputs")
 st.title("Project Inputs")
 data = {}
 
@@ -81,9 +81,32 @@ with col2:
 
 st.caption("**:orange[Pressure Drop Values]**")
 st.caption("Provide component pressure drops (in. w.g.) for each fan system as required, assuming an AHU design velocity of 500 FPM.")
-path = Path.cwd() / 'data' / 'Reference.xlsx'
+# path = Path.cwd() / 'data' / 'Reference.xlsx'
+path = Path.cwd() / 'streamlit' / 'data' / 'Reference.xlsx'
 df_PD_default = pd.read_excel(path, engine="openpyxl", sheet_name='Pressure Drop', names = ['Component', 'Supply Fan', 'Lab Exhaust Fan', 'General Exhaust Fan'])
-PD_return = AgGrid(df_PD_default, key='grid1', theme="balham", editable=True, fit_columns_on_grid_load=False)
+
+
+js = JsCode("""
+function(e) {
+    let api = e.api;
+    let rowIndex = e.rowIndex;
+    let col = e.column.colId;
+
+    let rowNode = api.getDisplayedRowAtIndex(rowIndex);
+    api.flashCells({
+      rowNodes: [rowNode],
+      columns: [col],
+      flashDelay: 10000000000
+    });
+
+};
+""")
+
+gb = GridOptionsBuilder.from_dataframe(df_PD_default)
+gb.configure_columns(['Component', 'Supply Fan', 'Lab Exhaust Fan', 'General Exhaust Fan'], editable=True)
+gb.configure_grid_options(onCellValueChanged=js) 
+go = gb.build()
+PD_return = AgGrid(df_PD_default, key='grid1', gridOptions=go, theme="balham", editable=True, fit_columns_on_grid_load=True, allow_unsafe_jscode=True, reload_data=False)
 # st.text("Grid Return")
 # st.write(PD_return['data'])
 

@@ -8,6 +8,14 @@ st.title("Iterations")
 
 tab1, tab2 = st.tabs(["Research Lab", "Academic Lab"])
 
+change_text = f'''
+<style>
+.stMultiSelect div div div div div:nth-of-type(2) {{visibility: hidden;}}
+.stMultiSelect div div div div div:nth-of-type(2)::before {{visibility: visible; content:"Choose one or more options";}}
+</style>
+'''
+st.markdown(change_text, unsafe_allow_html=True)
+
 with tab1:
     col1, col2 = st.columns(2, gap ="medium")
     with col1:
@@ -119,4 +127,5 @@ with tab2:
 #     """,
 #     unsafe_allow_html=True,
 # )
+
 
