@@ -65,13 +65,13 @@ col1, col2 = st.columns(2, gap ="medium")
 with col1:
     st.caption("**:orange[Room Setpoints]**")
     data['Setpoint_Occ'] = st.number_input("Occupied setpoint (°F)", value = default(40, 'num'), key = 40)
-    data['Setpoint_Uncc'] = st.number_input("Unoccupied setpoint (°F)", value = default(41, 'num'), key = 41)
+    data['Setpoint_Unocc'] = st.number_input("Unoccupied setpoint (°F)", value = default(41, 'num'), key = 41)
     data['Setpoint_SAT'] = st.number_input("Supply air temperature setpoint (°F)", value = default(42, 'num'), key = 42)
     data['Humidification'] = st.number_input("Humidification setpoint (%)", value = default(56, 'num'), key = 56, help = "Enter 0 if humidification is not provided")
 with col2:
     st.caption("**:orange[Air Change Rate Requirements]**")
     data['ACH_Min_Occ'] = st.number_input("Minimum unoccupied ACH", value = default(43, 'num'), key = 43)
-    data['Setpoint_Uncc'] = st.number_input("Aircuity ACH", value = default(44, 'num'), key = 44)
+    data['ACH_Aircuity'] = st.number_input("Aircuity ACH", value = default(44, 'num'), key = 44)
     
 col1, col2 = st.columns(2, gap ="medium")
 with col1:
