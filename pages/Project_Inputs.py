@@ -139,7 +139,7 @@ data_xlsx = io.BytesIO()
 with pd.ExcelWriter(data_xlsx, engine='xlsxwriter') as writer:
     df_data.to_excel(writer, sheet_name = 'Inputs')
     df_PD.to_excel(writer, sheet_name = 'Pressure Drop')
-    writer.save()
+    writer.close()
 
 def email():
     send_email(sender="lab.model.noreply@gmail.com", password="xclqnbtsqloiuplq",
