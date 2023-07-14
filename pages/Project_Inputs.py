@@ -11,7 +11,7 @@ st.title("Project Inputs")
 data = {}
 st.session_state.update(st.session_state)
 
-default_nums = {24:-1.7, 25:91.2, 26:74.1, 30:1200, 32:100, 35:10, 37:50, 40:72, 41:65, 42:55, 43:4, 44:4, 45:50, 46:40, 47:74, 48:60, 49:0.58, 50:80, 51:70, 52:40, 53:65, 54:60}
+default_nums = {24:-1.7, 25:91.2, 26:74.1, 30:1200, 32:100, 35:10, 37:50, 40:72, 41:65, 42:55, 43:4, 44:4, 45:50, 46:40, 47:74, 48:60, 49:0.58, 50:80, 51:70, 52:40, 53:65, 54:60, 56:20}
 def default(k, typ):
     if k not in st.session_state:
         if typ == 'text':
@@ -66,7 +66,8 @@ with col1:
     st.caption("**:orange[Room Setpoints]**")
     data['Setpoint_Occ'] = st.number_input("Occupied setpoint (°F)", value = default(40, 'num'), key = 40)
     data['Setpoint_Uncc'] = st.number_input("Unoccupied setpoint (°F)", value = default(41, 'num'), key = 41)
-    data['Setpoint_SAT'] = st.number_input("Supply air temperature (°F)", value = default(42, 'num'), key = 42)
+    data['Setpoint_SAT'] = st.number_input("Supply air temperature setpoint (°F)", value = default(42, 'num'), key = 42)
+    data['Humidification'] = st.number_input("Humidification setpoint (%)", value = default(56, 'num'), key = 56, help = "Enter 0 if humidification is not provided")
 with col2:
     st.caption("**:orange[Air Change Rate Requirements]**")
     data['ACH_Min_Occ'] = st.number_input("Minimum unoccupied ACH", value = default(43, 'num'), key = 43)
@@ -74,12 +75,12 @@ with col2:
     
 col1, col2 = st.columns(2, gap ="medium")
 with col1:
-    st.caption("**:orange[Discharge Air]**")
+    st.caption("**:orange[Discharge Air Setpoint]**")
     data['DA_DB'] = st.number_input("Discharge air dry-bulb (°F)", value = default(45, 'num'), key = 45)
     data['DA_RH'] = st.number_input("Discharge air RH (%)", value = default(46, 'num'), key = 46)
     data["DA_W"] = 0
 with col2:
-    st.caption("**:orange[Exhaust Air]**")
+    st.caption("**:orange[Exhaust Air Conditions]**")
     data['EA_DB'] = st.number_input("Exhaust air dry-bulb (°F)", value = default(47, 'num'), key = 47)
     data['EA_RH'] = st.number_input("Exhaust air RH (%)", value = default(48, 'num'), key = 48)
     data["EA_W"] = 0
@@ -101,8 +102,8 @@ with col2:
 
 st.caption("**:orange[Pressure Drop Values]**")
 st.caption("Provide component pressure drops (in. w.g.) for each fan system as required, assuming an AHU design velocity of 500 FPM.")
-path = Path.cwd() / 'data' / 'Reference.xlsx'
-# path = Path.cwd() / 'streamlit' / 'data' / 'Reference.xlsx'
+# path = Path.cwd() / 'data' / 'Reference.xlsx'
+path = Path.cwd() / 'streamlit' / 'data' / 'Reference.xlsx'
 df_PD_default = pd.read_excel(path, engine="openpyxl", sheet_name='Pressure Drop', names = ['Component', 'Supply Fan', 'Lab Exhaust Fan', 'General Exhaust Fan'])
 js = JsCode("""
 function(e) {
