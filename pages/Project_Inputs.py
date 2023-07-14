@@ -102,8 +102,8 @@ with col2:
 
 st.caption("**:orange[Pressure Drop Values]**")
 st.caption("Provide component pressure drops (in. w.g.) for each fan system as required, assuming an AHU design velocity of 500 FPM.")
-# path = Path.cwd() / 'data' / 'Reference.xlsx'
-path = Path.cwd() / 'streamlit' / 'data' / 'Reference.xlsx'
+path = Path.cwd() / 'data' / 'Reference.xlsx'
+# path = Path.cwd() / 'streamlit' / 'data' / 'Reference.xlsx'
 df_PD_default = pd.read_excel(path, engine="openpyxl", sheet_name='Pressure Drop', names = ['Component', 'Supply Fan', 'Lab Exhaust Fan', 'General Exhaust Fan'])
 js = JsCode("""
 function(e) {
