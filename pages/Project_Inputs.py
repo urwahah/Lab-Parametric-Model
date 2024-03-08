@@ -77,8 +77,7 @@ col1, col2 = st.columns(2, gap ="medium")
 with col1:
     st.caption("**:orange[Discharge Air Setpoint]**")
     data['Discharge air DB (degF)'] = st.number_input("Discharge air dry-bulb (°F)", value = default(45, 'num'), key = 45)
-    data['Discharge air RH (%)'] = st.number_input("Discharge air RH (%)", value = default(46, 'num'), key = 46)
-    data["Discharge air W"] = 0
+    data['Discharge air W (lb/lb)'] = st.number_input("Discharge air humidity ratio (lb/lb)", value = default(46, 'num'), key = 46)
 with col2:
     st.caption("**:orange[Exhaust Air Conditions]**")
     data['Exhaust air DB (degF)'] = st.number_input("Exhaust air dry-bulb (°F)", value = default(47, 'num'), key = 47)
