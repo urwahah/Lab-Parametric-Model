@@ -10,8 +10,9 @@ st.set_page_config(page_title="Project Inputs")
 st.title("Project Inputs")
 data = {}
 st.session_state.update(st.session_state)
+start_key = 200
 
-default_nums = {24:-1.7, 25:91.2, 26:74.1, 30:1200, 32:100, 35:10, 37:50, 40:72, 41:65, 42:55, 43:4, 44:4, 45:50, 46:0.00310, 47:74, 48:60, 49:0.58, 50:80, 51:70, 52:40, 53:65, 54:60, 56:20}
+default_nums = {start_key+2:-1.7, start_key+3:91.2, start_key+4:74.1, start_key+8:1200, start_key+10:100, start_key+13:10, start_key+15:50, start_key+18:72, start_key+19:65, start_key+20:55, start_key+21:20, start_key+22:4, start_key+23:4, start_key+24:50, start_key+25:0.00310, start_key+26:74, start_key+27:60, start_key+28:0.58, start_key+29:80, start_key+30:70, start_key+31:40, start_key+32:65, start_key+33:60}
 def default(k, typ):
     if k not in st.session_state:
         if typ == 'text':
@@ -31,57 +32,57 @@ data['Contact'] = st.sidebar.text_input('Email address', value=default('email', 
 st.subheader("General")
 col1, col2 = st.columns(2, gap ="medium")
 with col1:
-    data['Location'] =  st.text_input("Project location", value = default(23, 'text'), placeholder = "Chicago, IL", key = 23)
+    data['Location'] =  st.text_input("Project location", value = default(start_key+1, 'text'), placeholder = "Chicago, IL", key = start_key+1)
     st.caption("**:orange[Design Air Conditions]**")
-    data['Design heating DB (degF)'] = st.number_input("Heating dry-bulb (°F)", value = default(24, 'num'), step = 0.1, key = 24)
-    data['Design cooling DB (degF)'] = st.number_input("Cooling dry-bulb (°F)", value = default(25, 'num'), step = 0.1, key = 25)
-    data['Design cooling WB (degF)'] = st.number_input("Cooling wet-bulb (°F)", value = default(26, 'num'), step = 0.1, key = 26)
+    data['Design heating DB (degF)'] = st.number_input("Heating dry-bulb (°F)", value = default(start_key+2, 'num'), step = 0.1, key = start_key+2)
+    data['Design cooling DB (degF)'] = st.number_input("Cooling dry-bulb (°F)", value = default(start_key+3, 'num'), step = 0.1, key = start_key+3)
+    data['Design cooling WB (degF)'] = st.number_input("Cooling wet-bulb (°F)", value = default(start_key+4, 'num'), step = 0.1, key = start_key+4)
     data['Design cooling W'] = 0
 with col2:
-    data['Weather station'] = st.text_input("ASHRAE Weather Station (WMO)", value = default(27, 'text'), placeholder = "725300", key = 27)
+    data['Weather station'] = st.text_input("ASHRAE Weather Station (WMO)", value = default(start_key+5, 'text'), placeholder = "725300", key = start_key+5)
     st.caption("**:orange[Utility Rates]**")
-    data['Utility rate (electricity $/kW)'] = st.text_input("Electricity", value = default(28, 'text'), placeholder = "$0.08/kW", key = 28)
-    data['Utility rate (gas $/CF)'] = st.text_input("Gas", value = default(29, 'text'), placeholder = "$0.01/CF", key = 29)
+    data['Utility rate (electricity $/kW)'] = st.text_input("Electricity", value = default(start_key+6, 'text'), placeholder = "$0.08/kW", key = start_key+6)
+    data['Utility rate (gas $/CF)'] = st.text_input("Gas", value = default(start_key+7, 'text'), placeholder = "$0.01/CF", key = start_key+7)
 
 st.subheader("Laboratory Characteristics")
 col1, col2 = st.columns(2, gap ="medium")
 with col1:
-    data['Floor area (sf)'] = st.number_input("Floor area (sq. ft.)", value = default(30, 'num'), key = 30)
-    data['Point exhaust airflow (CFM)'] = st.number_input("Point exhaust airflow (CFM)", value = 0, key = 31, help = "For a single snorkel")
+    data['Floor area (sf)'] = st.number_input("Floor area (sq. ft.)", value = default(start_key+8, 'num'), key = start_key+8)
+    data['Point exhaust airflow (CFM)'] = st.number_input("Point exhaust airflow (CFM)", value = 0, key = start_key+9, help = "For a single snorkel")
     st.caption("**:orange[Standard Fume Hood]**")
-    data['Standard FH FPM'] = st.number_input("Fume hood velocity (FPM)", value = default(32, 'num'), key = 32)
-    data['Standard FH max CFM'] = st.number_input("Maximum fume hood airflow (CFM)", value = 0, key = 33, step = 25, help = "For a single fume hood in the as-used sash position (18\")")
-    data['Standard FH min CFM'] = st.number_input("Minimum fume hood airflow (CFM)", value = 0, key = 34, step = 25)
+    data['Standard FH FPM'] = st.number_input("Fume hood velocity (FPM)", value = default(start_key+10, 'num'), key = start_key+10)
+    data['Standard FH max CFM'] = st.number_input("Maximum fume hood airflow (CFM)", value = 0, key = start_key+11, step = 25, help = "For a single fume hood in the as-used sash position (18\")")
+    data['Standard FH min CFM'] = st.number_input("Minimum fume hood airflow (CFM)", value = 0, key = start_key+12, step = 25)
 with col2:
-    data['Height (ft)'] = st.number_input("Ceiling height (ft)", value = default(35, 'num'), key = 35)
-    data['Transfer CFM'] = st.number_input("Transfer/offset airflow (CFM)", value = 0, key = 36, step = 50)
+    data['Height (ft)'] = st.number_input("Ceiling height (ft)", value = default(start_key+13, 'num'), key = start_key+13)
+    data['Transfer CFM'] = st.number_input("Transfer/offset airflow (CFM)", value = 0, key = start_key+14, step = 50)
     st.caption("**:orange[High Performance Fume Hood]**")
-    data['High performance FH FPM'] = st.number_input("Fume hood velocity (FPM)", value = default(37, 'num'), key = 37)
-    data['High performance FH max CFM'] = st.number_input("Maximum fume hood airflow (CFM)", value = 0, key = 38, step = 25, help = "For a single fume hood in the as-used sash position (18\")")
-    data['High performance FH min CFM'] = st.number_input("Minimum fume hood airflow (CFM)", value = 0, key = 39, step = 25)
+    data['High performance FH FPM'] = st.number_input("Fume hood velocity (FPM)", value = default(start_key+15, 'num'), key = start_key+15)
+    data['High performance FH max CFM'] = st.number_input("Maximum fume hood airflow (CFM)", value = 0, key = start_key+16, step = 25, help = "For a single fume hood in the as-used sash position (18\")")
+    data['High performance FH min CFM'] = st.number_input("Minimum fume hood airflow (CFM)", value = 0, key = start_key+17, step = 25)
 
 st.subheader("Setpoints")
 col1, col2 = st.columns(2, gap ="medium")
 with col1:
     st.caption("**:orange[Room Setpoints]**")
-    data['Occupied setpoint (degF)'] = st.number_input("Occupied setpoint (°F)", value = default(40, 'num'), key = 40)
-    data['Unoccupied setpoint (degF)'] = st.number_input("Unoccupied setpoint (°F)", value = default(41, 'num'), key = 41)
-    data['Supply air setpoint (degF)'] = st.number_input("Supply air temperature setpoint (°F)", value = default(42, 'num'), key = 42)
-    data['Humidification setpoint (%)'] = st.number_input("Humidification setpoint (%)", value = default(56, 'num'), key = 56, help = "Enter 0 if humidification is not provided")
+    data['Occupied setpoint (degF)'] = st.number_input("Occupied setpoint (°F)", value = default(start_key+18, 'num'), key = start_key+18)
+    data['Unoccupied setpoint (degF)'] = st.number_input("Unoccupied setpoint (°F)", value = default(start_key+19, 'num'), key = start_key+19)
+    data['Supply air setpoint (degF)'] = st.number_input("Supply air temperature setpoint (°F)", value = default(start_key+20, 'num'), key = start_key+20)
+    data['Humidification setpoint (%)'] = st.number_input("Humidification setpoint (%)", value = default(start_key+21, 'num'), key = start_key+21, help = "Enter 0 if humidification is not provided")
 with col2:
     st.caption("**:orange[Air Change Rate Requirements]**")
-    data['Min. occupied AHC'] = st.number_input("Minimum unoccupied ACH", value = default(43, 'num'), key = 43)
-    data['Aircuity ACH'] = st.number_input("Aircuity ACH", value = default(44, 'num'), key = 44)
+    data['Min. unoccupied ACH'] = st.number_input("Minimum unoccupied ACH", value = default(start_key+22, 'num'), key = start_key+22)
+    data['Aircuity ACH'] = st.number_input("Aircuity ACH", value = default(start_key+23, 'num'), key = start_key+23)
     
 col1, col2 = st.columns(2, gap ="medium")
 with col1:
     st.caption("**:orange[Discharge Air Setpoint]**")
-    data['Discharge air DB (degF)'] = st.number_input("Discharge air dry-bulb (°F)", value = default(45, 'num'), key = 45)
-    data['Discharge air W (lb/lb)'] = st.number_input("Discharge air humidity ratio (lb/lb)", value = default(46, 'num'), key = 46, format="%.5f")
+    data['Discharge air DB (degF)'] = st.number_input("Discharge air dry-bulb (°F)", value = default(start_key+24, 'num'), key = start_key+24, help = "Coil leaving air setpoint, before fan heat gain")
+    data['Discharge air W (lb/lb)'] = st.number_input("Discharge air humidity ratio (lb/lb)", value = default(start_key+25, 'num'), key = start_key+25, step = 0.001)
 with col2:
     st.caption("**:orange[Exhaust Air Conditions]**")
-    data['Exhaust air DB (degF)'] = st.number_input("Exhaust air dry-bulb (°F)", value = default(47, 'num'), key = 47)
-    data['Exhaust air RH (%)'] = st.number_input("Exhaust air RH (%)", value = default(48, 'num'), key = 48)
+    data['Exhaust air DB (degF)'] = st.number_input("Exhaust air dry-bulb (°F)", value = default(start_key+26, 'num'), key = start_key+26)
+    data['Exhaust air RH (%)'] = st.number_input("Exhaust air RH (%)", value = default(start_key+27, 'num'), key = start_key+27)
     data["Exhaust air W"] = 0
     data["Exhaust air h"] = 0
     data["Exhaust air v"] = 0
@@ -90,14 +91,14 @@ st.subheader("Systems")
 col1, col2 = st.columns(2, gap ="medium")
 with col1:
     st.caption("**:orange[Plant Efficiency]**")
-    data['Cooling efficiency (kW/ton)'] = st.number_input("Cooling efficiency (kW/ton)", value = default(49, 'num'), key = 49)
-    data['Heating efficiency (%)'] = st.number_input("Heating efficiency (%)", value = default(50, 'num'), key = 50)
-    data["Steam efficiency (%)"] = st.number_input("Steam plant efficiency (%)", value = default(51, 'num'), key = 51)
+    data['Cooling efficiency (kW/ton)'] = st.number_input("Cooling efficiency (kW/ton)", value = default(start_key+28, 'num'), key = start_key+28)
+    data['Heating efficiency (%)'] = st.number_input("Heating efficiency (%)", value = default(start_key+29, 'num'), key = start_key+29)
+    data["Steam efficiency (%)"] = st.number_input("Steam plant efficiency (%)", value = default(start_key+30, 'num'), key = start_key+30)
 with col2:
     st.caption("**:orange[Energy Recovery Loop Effectiveness]**")
-    data['Runaround coil effectiveness (%)'] = st.number_input("Runaround coil effectiveness - sensible (%)", value = default(52, 'num'), key = 52)
-    data['ERW sensible effectiveness (%)'] = st.number_input("Wheel effectiveness - sensible (%)", value = default(53, 'num'), key = 53)
-    data['ERW latent effectiveness (%)'] = st.number_input("Wheel effectiveness - latent (%)", value = default(54, 'num'), key = 54)
+    data['Runaround coil effectiveness (%)'] = st.number_input("Runaround coil effectiveness - sensible (%)", value = default(start_key+31, 'num'), key = start_key+31)
+    data['ERW sensible effectiveness (%)'] = st.number_input("Wheel effectiveness - sensible (%)", value = default(start_key+32, 'num'), key = start_key+32)
+    data['ERW latent effectiveness (%)'] = st.number_input("Wheel effectiveness - latent (%)", value = default(start_key+33, 'num'), key = start_key+33)
 
 st.caption("**:orange[Pressure Drop Values]**")
 st.caption("Provide component pressure drops (in. w.g.) for each fan system as required, assuming an AHU design velocity of 500 FPM.")
@@ -128,7 +129,7 @@ PD_return = AgGrid(df_PD_default, key='grid1', gridOptions=go, theme="balham", e
 # st.write(PD_return['data'])
 
 st.subheader("")
-data['other'] = st.text_area('Any other information not captured above:', value = default(55, 'text'), key = 55)
+data['other'] = st.text_area('Any other information not captured above:', value = default(start_key+34, 'text'), key = start_key+34)
 
 df_data = pd.Series(data, name='data')
 df_PD = PD_return['data'].set_index('Component')
@@ -139,7 +140,6 @@ data_xlsx = io.BytesIO()
 with pd.ExcelWriter(data_xlsx, engine='xlsxwriter') as writer:
     df_data.to_excel(writer, sheet_name = 'Inputs')
     df_PD.to_excel(writer, sheet_name = 'Pressure Drop')
-    writer.close()
 
 def email():
     send_email(sender="lab.model.noreply@gmail.com", password="xclqnbtsqloiuplq",
