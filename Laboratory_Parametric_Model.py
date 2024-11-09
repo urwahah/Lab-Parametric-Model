@@ -24,7 +24,7 @@ st.markdown(
     """
 )
 st.subheader("")
-st.image("https://i.imgur.com/sPVBkh7.png", caption = "PowerBI Dashboard")
+st.image("https://i.imgur.com/GsKypV0.jpeg", caption = "PowerBI Dashboard")
 st.subheader("")
 st.write("Source code is available [here](https://github.com/urwahah/Lab-Parametric-Model).")
 
@@ -52,7 +52,7 @@ def send_email(sender, password, receiver, smtp_server, smtp_port, email_message
   elif file=='academic':
     part.set_payload(attachment)
     encoders.encode_base64(part)
-    part.add_header('Content-Disposition', 'attachment; filename="Iterations_Academic.pkl"')
+    part.add_header('Content-Disposition', 'attachment; filename="Iterations_Instructional.pkl"')
   else:
     part.set_payload(attachment.getvalue())
     encoders.encode_base64(part)
