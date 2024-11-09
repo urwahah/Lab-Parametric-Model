@@ -15,18 +15,17 @@ st.markdown(
     **Instructions:**
     1. Provide the project name and your email address in the sidebar.
     2. On the _Iterations_ page, enter the various laboratory characteristics and energy conservation measures to be tested.
-       * Assign all parameters at least one value.
+       * Assign all required parameters at least one value. Additional parameters can be included as required.
        * The total number of iterations and computation time will display along with a submit button.
-       * There are separate tabs for Research and Academic labs. If both types of labs are to be tested, two submissions will be needed.
+       * There are separate tabs for Research and Instructional labs. If both types of labs are to be tested, two submissions will be needed.
     3. On the _Project Inputs_ page, provide all relevant project-specific information and submit.
 
     For questions or suggestions, please reach out to me at urwa.irfan@smithgroup.com :)
+    Source code is available [here](https://github.com/urwahah/Lab-Parametric-Model).
     """
 )
 st.subheader("")
 st.image("https://i.imgur.com/GsKypV0.jpeg", caption = "PowerBI Dashboard")
-st.subheader("")
-st.write("Source code is available [here](https://github.com/urwahah/Lab-Parametric-Model).")
 
 def default(k):
     if k not in st.session_state:
